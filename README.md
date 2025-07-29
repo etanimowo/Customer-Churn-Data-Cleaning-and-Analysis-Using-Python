@@ -34,12 +34,8 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 #### Inspecting Data
 - Check data types and non-null counts
 - churn.info()
-
-<img width="632" height="241" alt="info" src="https://github.com/user-attachments/assets/ac713539-78ab-48dc-8101-5330d98ece06" />
-<br></br>
 - check also for Summary statistics for numerical columns
 - churn.describe()
-<br><br>
 - Next, check unique values in categorical columns 
 - churn['gender'].value_counts()
 
@@ -50,12 +46,8 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 #### Handling Missing Values
 - Check missing values per column
 - churn.isnull().sum()
-
-<img width="632" height="228" alt="missing val" src="https://github.com/user-attachments/assets/657433ba-dd36-4c5c-99f4-b75e2fd37c87" />
-<br></br>
-- From the above, four (4) columns had missing values – CustomerID, InternetServices, DeviceProtection and TotalCharges.
-
-- CustomerID
+- From the result, four (4) columns had missing values – CustomerID, InternetServices, DeviceProtection and TotalCharges.
+- First: CustomerID
 - Drop rows with missing customerID (not usable without ID)
 - churn = churn.dropna(subset=['customerID'])
 - Next, fill missing categorical values with the mode
