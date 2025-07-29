@@ -28,7 +28,8 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 
 <img width="632" height="82" alt="shape" src="https://github.com/user-attachments/assets/d498f05f-c9f8-4d89-9475-10a10d7a04ce" />
 <br></br>
-From the above result, customer churn dataset has 7048 rows and 21 columns.
+
+- From the above result, customer churn dataset has 7048 rows and 21 columns.
 
 #### Inspecting Data
 - Check data types and non-null counts
@@ -39,12 +40,12 @@ From the above result, customer churn dataset has 7048 rows and 21 columns.
 - check also for Summary statistics for numerical columns
 - churn.describe()
 <br><br>
-- Next, check unique values in categorical columns - Gender
+- Next, check unique values in categorical columns 
 - churn['gender'].value_counts()
 
 <img width="632" height="130" alt="gender" src="https://github.com/user-attachments/assets/8042445b-765d-4bcd-953b-34490ea02687" />
 
-From the above, there is inconstituency in the gender column nreds to be corrected.
+- From the above, there is inconstituency in the gender column nreds to be corrected.
 
 #### Handling Missing Values
 - Check missing values per column
@@ -52,7 +53,7 @@ From the above, there is inconstituency in the gender column nreds to be correct
 
 <img width="632" height="228" alt="missing val" src="https://github.com/user-attachments/assets/657433ba-dd36-4c5c-99f4-b75e2fd37c87" />
 <br></br>
-From the above, four (4) columns had missing values – CustomerID, InternetServices, DeviceProtection and TotalCharges.
+- From the above, four (4) columns had missing values – CustomerID, InternetServices, DeviceProtection and TotalCharges.
 
 - CustomerID
 - Drop rows with missing customerID (not usable without ID)
@@ -91,7 +92,7 @@ From the above, four (4) columns had missing values – CustomerID, InternetServ
 
 <img width="632" height="90" alt="incons" src="https://github.com/user-attachments/assets/90fc5ab2-29c3-4d2f-a045-250d8eca63f0" />
 <br><br>
-Five (5) duplicates found
+- Five (5) duplicates found
 - Check duplicate entries (optional, to see them)
 - duplicates = churn[churn.duplicated()]
 - print(duplicates)
@@ -107,9 +108,7 @@ Five (5) duplicates found
 <img width="632" height="113" alt="gender std" src="https://github.com/user-attachments/assets/f5b3515b-0f89-4cdf-83b7-2f4c8651939f" />
 <br></br>
 - Check for other text formatting errors:
-- for col in text_columns:
-    print(f"\nColumn: {col}")
-    print(churn[col].value_counts(dropna=False))
+- for col in text_columns: print(f"\nColumn: {col}") print(churn[col].value_counts(dropna=False))
 
 - Also, columns PhoneService and OnlineSecurity have text formatting errors
 - To capitalize only the PhoneService and OnlineSecurity columns, l used below scripts:
@@ -130,9 +129,7 @@ Five (5) duplicates found
 - churn.describe(include='all')
 - Check for Unexpected Values
 - Loop through each column’s unique values to spot typos, weird categories, etc.:
-- for col in churn.columns:
-    print(f"\nColumn: {col}")
-    print(churn[col].unique())
+- for col in churn.columns: print(f"\nColumn: {col}") print(churn[col].unique())
 - check for: extra spaces, mixed cases and junk values like '-', nan, '?', etc.
 - Check for Empty Strings or Whitespace
 - Sometimes entries are technically not null but still "empty", therefore use below function to check
