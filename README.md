@@ -59,31 +59,29 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - churn['TotalCharges'] = churn['TotalCharges'].fillna(0.0)
 - Final check : churn.isnull().sum()
 
-<img width="632" height="237" alt="nul final" src="https://github.com/user-attachments/assets/0acdda44-61b7-4893-a2b1-cfee2215b6be" />
+
+<img width="632" height="228" alt="null" src="https://github.com/user-attachments/assets/fb574548-b53b-402e-a6a0-82dbe96eabf1" />
 <br></br>
+
 - Next, is to check data types, inconsistent formats, or outliers within the dataset.
 - I want to validate that columns like TotalCharges are numeric
 - Check TotalCharges like this:
 - churn['TotalCharges'].dtype
+<img width="632" height="93" alt="data type" src="https://github.com/user-attachments/assets/f1822061-ad8a-4b35-80f9-f0d6be742488" />
 
- <img width="632" height="93" alt="data type" src="https://github.com/user-attachments/assets/de5ab659-5b8a-4bf2-9db3-53038a4a5019" />
-<br></br>
 - The data type is 'float', therefore no need to do any conversion
 - I want to do same to MonthlyCharge as well
 - check TotalCharges like this:
 - churn['MonthlyCharges'].dtype
 - Confirmed, it is an “object”, then it must be converted to “float”.
 - churn['MonthlyCharges'] = pd.to_numeric(churn['MonthlyCharges'], errors='coerce')
-
-<img width="632" height="44" alt="data type2" src="https://github.com/user-attachments/assets/0ba20598-ec65-483e-b9b0-70f364284ab9" />
-<br></br>
 - Next, check for duplicates:
 - churn.duplicated().sum()
 - Check for inconsistent categories (like typos or extra spaces):
 - churn['InternetService'].value_counts()
 
 <img width="632" height="90" alt="incons" src="https://github.com/user-attachments/assets/90fc5ab2-29c3-4d2f-a045-250d8eca63f0" />
-<br><br>
+
 - Five (5) duplicates found
 - Check duplicate entries (optional, to see them)
 - duplicates = churn[churn.duplicated()]
@@ -92,13 +90,13 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - churn = churn.drop_duplicates()
 
 <img width="632" height="73" alt="drop dup" src="https://github.com/user-attachments/assets/60b071e7-3b02-4b5a-b4fb-79fe415f6858" />
-<br></br>
+
 - Gender: 
 - I need to standardize text format by capitalizing all gender values consistently using .str.capitalize():
 - churn['gender'] = churn['gender'].str.strip().str.capitalize()
 
 <img width="632" height="113" alt="gender std" src="https://github.com/user-attachments/assets/f5b3515b-0f89-4cdf-83b7-2f4c8651939f" />
-<br></br>
+
 - Check for other text formatting errors:
 - for col in text_columns: print(f"\nColumn: {col}") print(churn[col].value_counts(dropna=False))
 
@@ -111,7 +109,7 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - print(churn['OnlineSecurity'].value_counts())
 
 <img width="632" height="165" alt="onlinesecu" src="https://github.com/user-attachments/assets/caa65e1d-48c2-414c-a21c-4d181301fb82" />
-<br></br>
+
 - Final Quality Checklist Before Analysis
 - Here’s a step-by-step way to inspect the entire dataset to ensure it's clean, complete, and ready.
 - churn.info()
@@ -145,7 +143,7 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - churn['tenure_group'] = churn['tenure_group'].astype('category')
 
 <img width="451" height="168" alt="tenu grp" src="https://github.com/user-attachments/assets/8fe899bc-4868-4667-9df3-0899151f5399" />
-<br></br>
+
 #### Save Cleaned Data
 - Finally, save the cleaned dataset: churn.to_csv('customer_churn_cleaned.csv', index=False)
 - print("Cleaned data saved to customer_churn_cleaned.csv")
@@ -158,7 +156,7 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - print(churn.groupby('Churn')['tenure'].mean())
 
 <img width="632" height="96" alt="avg month" src="https://github.com/user-attachments/assets/7e966e82-ca2b-4f6a-a744-b830aa885e3c" />
-<br></br>
+
 - The chart: 
 - import seaborn as sns
 - import matplotlib.pyplot as plt
@@ -166,7 +164,67 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 plt.title('Tenure by Churn Status')
 plt.show()
 
-<img width="421" height="172" alt="avg chart" src="https://github.com/user-attachments/assets/f2e8ddb3-aee9-4edb-ba80-becedc27aa7f" />
-<br></br>
+<img width="520" height="197" alt="ten chart1" src="https://github.com/user-attachments/assets/7e1cb742-747a-4998-a2ec-a978b9b04b9c" />
+
+
 - Conclusion: Churners have much shorter tenure on average. Customers who have stayed longer tend to remain loyal.
+
+#### Higher monthly charges correlate with higher churn
+- How it was discovered:
+- I compared average monthly charges for churners vs. non-churners and visualized the distribution.
+- Average monthly charges by churn status
+- print(churn.groupby('Churn')['MonthlyCharges'].mean())
+
+<img width="632" height="96" alt="avg month" src="https://github.com/user-attachments/assets/5f8bddcb-6ea2-4acf-b4a3-f4d81a91d582" />
+
+- The chart
+sns.histplot(data=churn, x='MonthlyCharges', hue='Churn', kde=True, element='step')
+plt.title('Monthly Charges Distribution by Churn')
+plt.show()
+
+<img width="421" height="172" alt="avg chart" src="https://github.com/user-attachments/assets/f69661c6-ba4d-4a2b-8e67-a37b6d6f7e09" />
+
+- Conclusion: Customers paying more per month are more likely to churn, suggesting cost is a major factor.
+
+#### Certain services affect churn probability (e.g., fiber optic users churn more)
+- How it was discovered:
+- I looked at the churn rate across InternetService types using groupby() and count plots.
+- Churn rate by InternetService
+- print(churn.groupby('InternetService')['Churn'].value_counts(normalize=True).unstack())
+
+<img width="632" height="111" alt="int ser" src="https://github.com/user-attachments/assets/316a088b-ba5a-44cd-924b-af010ddfba2b" />
+
+- The chart
+sns.countplot(data=churn, x='InternetService', hue='Churn')
+plt.title('Churn by Internet Service Type')
+plt.show()
+
+<img width="316" height="171" alt="int ser chart" src="https://github.com/user-attachments/assets/c0627256-8956-4f12-b0fd-6422c7d59a2c" />
+
+- Conclusion: Customers using Fiber optic internet churn more frequently than those on DSL or without internet, possibly due to higher costs or technical issues.
+
+#### Senior citizens are more likely to churn
+- How it was discovered:
+- I transformed the SeniorCitizen column for clarity and analyzed churn by this demographic.
+- Convert to Yes/No for readability
+- churn['SeniorCitizen'] = churn['SeniorCitizen'].apply(lambda x: 'Yes' if x == 1 else 'No')
+- Churn rates for senior citizens
+- print(churn.groupby('SeniorCitizen')['Churn'].value_counts(normalize=True).unstack())
+
+- The chart
+sns.countplot(data=churn, x='SeniorCitizen', hue='Churn')
+plt.title('Churn by Senior Citizen Status')
+plt.show()
+
+<img width="515" height="204" alt="snr citizen gr" src="https://github.com/user-attachments/assets/963da9fb-1d58-4646-9051-0b38f5821338" />
+
+
+- Conclusion: Senior citizens churn at a higher rate. This may indicate a need for better onboarding, customer service, or tech support tailored to this group.
+
+### Actionable Recommendations:
+- Short-tenure customers churn more:	Introduce loyalty incentives early
+- High monthly charges = higher churn:	Offer discounts or customizable plans
+- Fiber optic users churn more:		Investigate issues & provide better support
+- Seniors churn more:			Offer personalized help and tech guidance
+
 
