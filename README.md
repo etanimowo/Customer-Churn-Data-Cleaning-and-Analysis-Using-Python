@@ -227,4 +227,5 @@ plt.show()
 - Fiber optic users churn more:		Investigate issues & provide better support
 - Seniors churn more:			Offer personalized help and tech guidance
 
-
+### Download
+[Download the Python scripts here:](./churn.ipynb)
