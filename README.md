@@ -10,12 +10,15 @@
 - [Actionable Recommendations](#actionable-recommendations)
 - [Download](#download)
 
+---
 ### Project Overview
 This project involves cleaning and preparing a customer churn dataset for further analysis and predictive modeling. The dataset contains information about customers of a telecom company, including demographics, account information, and service usage details. The goal is to clean the dataset by handling missing values, correcting data types, removing duplicates, and preparing the data for actionable insights into customer behavior using Python’s Pandas library.
 
+---
 ### The Problem
 The raw customer churn dataset contains inconsistencies such as missing values, incorrect data types, and duplicate entries. These issues hinder accurate analysis and prediction of customer churn, which is critical for the company to reduce customer loss and improve retention strategies.
 
+---
 ### Tools Used
 - Python 3.13
 -	Pandas (for data manipulation and cleaning)
@@ -23,6 +26,7 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - Matplotlib and Seaborn (for visualization)
 - Jupyter Notebook (for interactive coding and documentation)
 
+---
 ### Data Cleaning Steps
 
 #### Load the Data
@@ -158,6 +162,7 @@ The raw customer churn dataset contains inconsistencies such as missing values, 
 - Finally, save the cleaned dataset: churn.to_csv('customer_churn_cleaned.csv', index=False)
 - print("Cleaned data saved to customer_churn_cleaned.csv")
 
+---
 ### Insights:
 #### Customers with longer tenure tend to stay longer with the company
 - How it was discovered:
@@ -231,15 +236,18 @@ plt.show()
 
 - Conclusion: Senior citizens churn at a higher rate. This may indicate a need for better onboarding, customer service, or tech support tailored to this group.
 
+---
 ### Actionable Recommendations:
 - Short-tenure customers churn more:	Introduce loyalty incentives early
 - High monthly charges = higher churn:	Offer discounts or customizable plans
 - Fiber optic users churn more:		Investigate issues & provide better support
 - Seniors churn more:			Offer personalized help and tech guidance
 
+---
 ### Download
 [Download the Python scripts here:](./churn.ipynb)
 
+---
 ### Meet the Analyst:
 👋 I’m **Sunday Tanimowo**, an Electrical Engineering grad turned Data Analyst passionate about solving problems with data. I’ve worked across retail, e-commerce, HR, healthcare, and finance using Excel, SQL, Power BI, and Python to turn raw data into actionable insights.  I connect analysis with business goals to drive growth and efficiency.
 
