@@ -235,4 +235,4 @@ plt.show()
 
 Let’s connect — whether it’s for collaboration, analytics support, or a data-driven chat. 
 
-[LinkedIn](www.linkedin.com/in/sundaytanimowo) | [Portfolio](https://tinyurl.com/aafvks7n)
+[LinkedIn](https://www.linkedin.com/in/sundaytanimowo) | [Portfolio](https://tinyurl.com/aafvks7n)
