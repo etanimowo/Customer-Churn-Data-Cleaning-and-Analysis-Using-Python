@@ -2,13 +2,13 @@
 
 ### Table of Content
 
-Project Overview
-The Problem
-Tools Used
-Data Cleaning Steps
-Insights
-Actionable Recommendations
-Download
+- [Project Overview](#project-overview)
+- [The Problem](#the-problem)
+- [Tools Used](#tools-used)
+- [Data Cleaning Steps](#data-cleaning-steps)
+- [Insights](#insights)
+- [Actionable Recommendations](#actionable-recommendations)
+- [Download](#download)
 
 ### Project Overview
 This project involves cleaning and preparing a customer churn dataset for further analysis and predictive modeling. The dataset contains information about customers of a telecom company, including demographics, account information, and service usage details. The goal is to clean the dataset by handling missing values, correcting data types, removing duplicates, and preparing the data for actionable insights into customer behavior using Python’s Pandas library.
