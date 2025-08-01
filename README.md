@@ -229,3 +229,10 @@ plt.show()
 
 ### Download
 [Download the Python scripts here:](./churn.ipynb)
+
+### Meet the Analyst:
+👋 I’m **Sunday Tanimowo**, an Electrical Engineering grad turned Data Analyst passionate about solving problems with data. I’ve worked across retail, e-commerce, HR, healthcare, and finance using Excel, SQL, Power BI, and Python to turn raw data into actionable insights.  I connect analysis with business goals to drive growth and efficiency.
+
+Let’s connect — whether it’s for collaboration, analytics support, or a data-driven chat. 
+
+[LinkedIn](www.linkedin.com/in/sundaytanimowo) | [Portfolio](https://tinyurl.com/aafvks7n)
